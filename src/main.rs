@@ -1,5 +1,5 @@
 use cursive::theme::Theme;
-use cursive::style::{Color, PaletteColor};
+use cursive::style::{Color,BaseColor::*, PaletteColor::*};
 use cursive::traits::{Nameable, Resizable};
 use cursive::view::Scrollable;
 use cursive::views::{Dialog, EditView, ListView};
@@ -26,7 +26,12 @@ fn custom_theme_from_cursive(siv: &Cursive) -> Theme {
     // We'll return the current theme with a small modification.
     let mut theme = siv.current_theme().clone();
 
-    theme.palette[PaletteColor::Background] = Color::TerminalDefault;
+    theme.palette[Background] = Color::TerminalDefault;
+    theme.palette[View] = Cyan.dark();
+        theme.palette[Primary] = Yellow.light();
+        theme.palette[TitlePrimary] = Red.light();
+        theme.palette[Highlight] = Green.dark();
+        theme.palette[HighlightText] = White.light();
 
     theme
 }
@@ -62,6 +67,9 @@ fn main() {
     let theme = custom_theme_from_cursive(&app);
 
     app.set_theme(theme);
+
+    app.set_window_title("Inventory Store");
+
 
     let products = Arc::new(Mutex::new(load_product_from_file(FILE_NAME)));
 
