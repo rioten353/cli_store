@@ -1,4 +1,5 @@
 use cursive::traits::{Nameable, Resizable};
+use cursive::view::Scrollable;
 use cursive::views::{Dialog, EditView, ListView};
 use cursive::{Cursive, CursiveExt};
 use serde::{Deserialize, Serialize};
@@ -134,7 +135,10 @@ fn main() {
                     content.push_str("No products found");
                 }
                 s.add_layer(Dialog::info(content)
-                    .title("All Products"));
+                    .title("All Products")
+                    .scrollable()
+                    .fixed_size((30, 30))
+                    );
             }
         }).button("Delete By Id", {
             move |s| {
