@@ -1,3 +1,5 @@
+use cursive::theme::Theme;
+use cursive::style::{Color, PaletteColor};
 use cursive::traits::{Nameable, Resizable};
 use cursive::view::Scrollable;
 use cursive::views::{Dialog, EditView, ListView};
@@ -18,6 +20,17 @@ struct Product {
 }
 // database file
 const FILE_NAME: &str = "products.json";
+
+//custon terminal theme
+fn custom_theme_from_cursive(siv: &Cursive) -> Theme {
+    // We'll return the current theme with a small modification.
+    let mut theme = siv.current_theme().clone();
+
+    theme.palette[PaletteColor::Background] = Color::TerminalDefault;
+
+    theme
+}
+
 
 //save product to file
 fn save_product_to_file(products: &Vec<Product>) -> io::Result<()> {
@@ -45,6 +58,10 @@ fn load_product_from_file(file_name: &str) -> Vec<Product> {
 
 fn main() {
     let mut app = Cursive::default();
+
+    let theme = custom_theme_from_cursive(&app);
+
+    app.set_theme(theme);
 
     let products = Arc::new(Mutex::new(load_product_from_file(FILE_NAME)));
 
