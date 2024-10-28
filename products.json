@@ -1,0 +1,1 @@
+[{"product_type":"Laptop","quantity":3,"price_per_unit":30000.0,"sales_tax":3000.0,"total_price":93000.0},{"product_type":"Android Phone","quantity":100,"price_per_unit":15000.0,"sales_tax":1500.0,"total_price":1501500.0},{"product_type":"Apple Phone","quantity":100,"price_per_unit":120000.0,"sales_tax":12000.0,"total_price":12012000.0}]
